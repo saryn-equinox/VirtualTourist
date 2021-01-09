@@ -3,27 +3,36 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		97F21FD825A6E3A700BD3C58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F21FD725A6E3A700BD3C58 /* AppDelegate.swift */; };
 		97F21FDA25A6E3A700BD3C58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F21FD925A6E3A700BD3C58 /* SceneDelegate.swift */; };
-		97F21FDC25A6E3A700BD3C58 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F21FDB25A6E3A700BD3C58 /* ViewController.swift */; };
+		97F21FDC25A6E3A700BD3C58 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F21FDB25A6E3A700BD3C58 /* MapViewController.swift */; };
 		97F21FDF25A6E3A700BD3C58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97F21FDD25A6E3A700BD3C58 /* Main.storyboard */; };
 		97F21FE125A6E3AC00BD3C58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97F21FE025A6E3AC00BD3C58 /* Assets.xcassets */; };
 		97F21FE425A6E3AC00BD3C58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97F21FE225A6E3AC00BD3C58 /* LaunchScreen.storyboard */; };
+		97F21FF925A6F0FC00BD3C58 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F21FF825A6F0FC00BD3C58 /* DetailViewController.swift */; };
+		97F21FFD25A7D9E400BD3C58 /* CoordinateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F21FFC25A7D9E400BD3C58 /* CoordinateExtension.swift */; };
+		97F2200925A8FBD200BD3C58 /* VTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F2200825A8FBD200BD3C58 /* VTClient.swift */; };
+		97F2204625A939AD00BD3C58 /* OAuthSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 97F2204525A939AD00BD3C58 /* OAuthSwift */; };
+		97F2205725A970F000BD3C58 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97F2205525A970F000BD3C58 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		97F21FD425A6E3A700BD3C58 /* VirtualTourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualTourist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F21FD725A6E3A700BD3C58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97F21FD925A6E3A700BD3C58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		97F21FDB25A6E3A700BD3C58 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		97F21FDB25A6E3A700BD3C58 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		97F21FDE25A6E3A700BD3C58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		97F21FE025A6E3AC00BD3C58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97F21FE325A6E3AC00BD3C58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97F21FE525A6E3AC00BD3C58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97F21FF825A6F0FC00BD3C58 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		97F21FFC25A7D9E400BD3C58 /* CoordinateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateExtension.swift; sourceTree = "<group>"; };
+		97F2200825A8FBD200BD3C58 /* VTClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VTClient.swift; sourceTree = "<group>"; };
+		97F2205625A970F000BD3C58 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97F2204625A939AD00BD3C58 /* OAuthSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +66,59 @@
 		97F21FD625A6E3A700BD3C58 /* VirtualTourist */ = {
 			isa = PBXGroup;
 			children = (
+				97F21FF525A6EC4B00BD3C58 /* Model */,
 				97F21FD725A6E3A700BD3C58 /* AppDelegate.swift */,
 				97F21FD925A6E3A700BD3C58 /* SceneDelegate.swift */,
-				97F21FDB25A6E3A700BD3C58 /* ViewController.swift */,
-				97F21FDD25A6E3A700BD3C58 /* Main.storyboard */,
+				97F21FF325A6E55900BD3C58 /* Controller */,
+				97F21FF125A6E54F00BD3C58 /* View */,
 				97F21FE025A6E3AC00BD3C58 /* Assets.xcassets */,
-				97F21FE225A6E3AC00BD3C58 /* LaunchScreen.storyboard */,
 				97F21FE525A6E3AC00BD3C58 /* Info.plist */,
 			);
 			path = VirtualTourist;
+			sourceTree = "<group>";
+		};
+		97F21FF125A6E54F00BD3C58 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				97F21FDD25A6E3A700BD3C58 /* Main.storyboard */,
+				97F21FE225A6E3AC00BD3C58 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		97F21FF325A6E55900BD3C58 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				97F21FDB25A6E3A700BD3C58 /* MapViewController.swift */,
+				97F21FF825A6F0FC00BD3C58 /* DetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		97F21FF525A6EC4B00BD3C58 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				97F2200825A8FBD200BD3C58 /* VTClient.swift */,
+				97F2200625A8FBB900BD3C58 /* Request */,
+				97F21FFF25A7D9F500BD3C58 /* Extension */,
+				97F2205525A970F000BD3C58 /* Model.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		97F21FFF25A7D9F500BD3C58 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				97F21FFC25A7D9E400BD3C58 /* CoordinateExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		97F2200625A8FBB900BD3C58 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -81,8 +135,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				97F2204925A939C400BD3C58 /* PBXTargetDependency */,
 			);
 			name = VirtualTourist;
+			packageProductDependencies = (
+				97F2204525A939AD00BD3C58 /* OAuthSwift */,
+			);
 			productName = VirtualTourist;
 			productReference = 97F21FD425A6E3A700BD3C58 /* VirtualTourist.app */;
 			productType = "com.apple.product-type.application";
@@ -110,6 +168,9 @@
 				Base,
 			);
 			mainGroup = 97F21FCB25A6E3A700BD3C58;
+			packageReferences = (
+				97F2204425A939AD00BD3C58 /* XCRemoteSwiftPackageReference "OAuthSwift" */,
+			);
 			productRefGroup = 97F21FD525A6E3A700BD3C58 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,13 +198,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97F21FDC25A6E3A700BD3C58 /* ViewController.swift in Sources */,
+				97F2200925A8FBD200BD3C58 /* VTClient.swift in Sources */,
+				97F21FDC25A6E3A700BD3C58 /* MapViewController.swift in Sources */,
 				97F21FD825A6E3A700BD3C58 /* AppDelegate.swift in Sources */,
+				97F2205725A970F000BD3C58 /* Model.xcdatamodeld in Sources */,
+				97F21FFD25A7D9E400BD3C58 /* CoordinateExtension.swift in Sources */,
 				97F21FDA25A6E3A700BD3C58 /* SceneDelegate.swift in Sources */,
+				97F21FF925A6F0FC00BD3C58 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		97F2204925A939C400BD3C58 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 97F2204825A939C400BD3C58 /* OAuthSwift */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		97F21FDD25A6E3A700BD3C58 /* Main.storyboard */ = {
@@ -287,6 +359,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = VirtualTourist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -305,6 +381,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = VirtualTourist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -339,6 +419,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		97F2204425A939AD00BD3C58 /* XCRemoteSwiftPackageReference "OAuthSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OAuthSwift/OAuthSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		97F2204525A939AD00BD3C58 /* OAuthSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97F2204425A939AD00BD3C58 /* XCRemoteSwiftPackageReference "OAuthSwift" */;
+			productName = OAuthSwift;
+		};
+		97F2204825A939C400BD3C58 /* OAuthSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97F2204425A939AD00BD3C58 /* XCRemoteSwiftPackageReference "OAuthSwift" */;
+			productName = OAuthSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		97F2205525A970F000BD3C58 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				97F2205625A970F000BD3C58 /* Model.xcdatamodel */,
+			);
+			currentVersion = 97F2205625A970F000BD3C58 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 97F21FCC25A6E3A700BD3C58 /* Project object */;
 }
