@@ -18,6 +18,13 @@
 		97F2200925A8FBD200BD3C58 /* VTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F2200825A8FBD200BD3C58 /* VTClient.swift */; };
 		97F2204625A939AD00BD3C58 /* OAuthSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 97F2204525A939AD00BD3C58 /* OAuthSwift */; };
 		97F2205725A970F000BD3C58 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97F2205525A970F000BD3C58 /* Model.xcdatamodeld */; };
+		97F2205B25A99DD400BD3C58 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 97F2205A25A99DD400BD3C58 /* Alamofire */; };
+		97F2206225A9A92400BD3C58 /* PhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F2206125A9A92400BD3C58 /* PhotoInfo.swift */; };
+		97F2206525AA089C00BD3C58 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F2206425AA089C00BD3C58 /* Photos.swift */; };
+		97F2206825AA0AD500BD3C58 /* PhotoSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F2206725AA0AD500BD3C58 /* PhotoSearch.swift */; };
+		97F2206C25AA512200BD3C58 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F2206B25AA512100BD3C58 /* ImageCollectionViewCell.swift */; };
+		97F2206F25AA694C00BD3C58 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F2206E25AA694C00BD3C58 /* AppData.swift */; };
+		97F2207225AA75FA00BD3C58 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F2207125AA75FA00BD3C58 /* NotificationExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +40,12 @@
 		97F21FFC25A7D9E400BD3C58 /* CoordinateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateExtension.swift; sourceTree = "<group>"; };
 		97F2200825A8FBD200BD3C58 /* VTClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VTClient.swift; sourceTree = "<group>"; };
 		97F2205625A970F000BD3C58 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		97F2206125A9A92400BD3C58 /* PhotoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfo.swift; sourceTree = "<group>"; };
+		97F2206425AA089C00BD3C58 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		97F2206725AA0AD500BD3C58 /* PhotoSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearch.swift; sourceTree = "<group>"; };
+		97F2206B25AA512100BD3C58 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		97F2206E25AA694C00BD3C58 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		97F2207125AA75FA00BD3C58 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +54,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97F2204625A939AD00BD3C58 /* OAuthSwift in Frameworks */,
+				97F2205B25A99DD400BD3C58 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +105,7 @@
 			children = (
 				97F21FDB25A6E3A700BD3C58 /* MapViewController.swift */,
 				97F21FF825A6F0FC00BD3C58 /* DetailViewController.swift */,
+				97F2206B25AA512100BD3C58 /* ImageCollectionViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -99,9 +114,11 @@
 			isa = PBXGroup;
 			children = (
 				97F2200825A8FBD200BD3C58 /* VTClient.swift */,
+				97F2206025A9A91100BD3C58 /* Response */,
 				97F2200625A8FBB900BD3C58 /* Request */,
 				97F21FFF25A7D9F500BD3C58 /* Extension */,
 				97F2205525A970F000BD3C58 /* Model.xcdatamodeld */,
+				97F2206E25AA694C00BD3C58 /* AppData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -110,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				97F21FFC25A7D9E400BD3C58 /* CoordinateExtension.swift */,
+				97F2207125AA75FA00BD3C58 /* NotificationExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -119,6 +137,16 @@
 			children = (
 			);
 			path = Request;
+			sourceTree = "<group>";
+		};
+		97F2206025A9A91100BD3C58 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				97F2206125A9A92400BD3C58 /* PhotoInfo.swift */,
+				97F2206425AA089C00BD3C58 /* Photos.swift */,
+				97F2206725AA0AD500BD3C58 /* PhotoSearch.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,11 +163,13 @@
 			buildRules = (
 			);
 			dependencies = (
+				97F2205E25A99DE700BD3C58 /* PBXTargetDependency */,
 				97F2204925A939C400BD3C58 /* PBXTargetDependency */,
 			);
 			name = VirtualTourist;
 			packageProductDependencies = (
 				97F2204525A939AD00BD3C58 /* OAuthSwift */,
+				97F2205A25A99DD400BD3C58 /* Alamofire */,
 			);
 			productName = VirtualTourist;
 			productReference = 97F21FD425A6E3A700BD3C58 /* VirtualTourist.app */;
@@ -170,6 +200,7 @@
 			mainGroup = 97F21FCB25A6E3A700BD3C58;
 			packageReferences = (
 				97F2204425A939AD00BD3C58 /* XCRemoteSwiftPackageReference "OAuthSwift" */,
+				97F2205925A99DD400BD3C58 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 97F21FD525A6E3A700BD3C58 /* Products */;
 			projectDirPath = "";
@@ -198,13 +229,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97F2206225A9A92400BD3C58 /* PhotoInfo.swift in Sources */,
+				97F2206C25AA512200BD3C58 /* ImageCollectionViewCell.swift in Sources */,
 				97F2200925A8FBD200BD3C58 /* VTClient.swift in Sources */,
 				97F21FDC25A6E3A700BD3C58 /* MapViewController.swift in Sources */,
+				97F2207225AA75FA00BD3C58 /* NotificationExtension.swift in Sources */,
 				97F21FD825A6E3A700BD3C58 /* AppDelegate.swift in Sources */,
+				97F2206825AA0AD500BD3C58 /* PhotoSearch.swift in Sources */,
+				97F2206525AA089C00BD3C58 /* Photos.swift in Sources */,
 				97F2205725A970F000BD3C58 /* Model.xcdatamodeld in Sources */,
 				97F21FFD25A7D9E400BD3C58 /* CoordinateExtension.swift in Sources */,
 				97F21FDA25A6E3A700BD3C58 /* SceneDelegate.swift in Sources */,
 				97F21FF925A6F0FC00BD3C58 /* DetailViewController.swift in Sources */,
+				97F2206F25AA694C00BD3C58 /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +251,10 @@
 		97F2204925A939C400BD3C58 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 97F2204825A939C400BD3C58 /* OAuthSwift */;
+		};
+		97F2205E25A99DE700BD3C58 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 97F2205D25A99DE700BD3C58 /* Alamofire */;
 		};
 /* End PBXTargetDependency section */
 
@@ -429,6 +470,14 @@
 				minimumVersion = 2.1.2;
 			};
 		};
+		97F2205925A99DD400BD3C58 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -441,6 +490,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 97F2204425A939AD00BD3C58 /* XCRemoteSwiftPackageReference "OAuthSwift" */;
 			productName = OAuthSwift;
+		};
+		97F2205A25A99DD400BD3C58 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97F2205925A99DD400BD3C58 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		97F2205D25A99DE700BD3C58 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97F2205925A99DD400BD3C58 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 

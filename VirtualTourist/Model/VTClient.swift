@@ -7,10 +7,11 @@
 
 import Foundation
 import OAuthSwift
+import Alamofire
+import UIKit
 
 class VTClient {
 
-    
     struct Auth {
         static let apiKey = "48ac9b73677358d9f41770b725d1e38e"
         static let secret = "3df087102feacc87"
@@ -37,4 +38,49 @@ class VTClient {
     }
     
     private static let baseURL = "https://www.flickr.com/services/rest/"
+    private static let imageBaseURL = "https://live.staticflickr.com/"
+    
+    /**
+     Search photos assoicate with specific locaton
+     */
+    public static func searchForPhotoes(lat: Double, lon: Double) {
+        let paramters: [String: Any] = ["method": "flickr.photos.search",
+                         "api_key": Auth.apiKey,
+                         "lat": lat,
+                         "lon": lon,
+                         "format": "json",
+                         "nojsoncallback": 1]
+    
+        AF.request(VTClient.baseURL, method: .get, parameters: paramters).validate().responseDecodable(of: PhotoSearch.self) { (response) in
+            switch response.result {
+            case .success:
+                AppData.photos = response.value
+                downloadImages(photos: AppData.photos!.photos)
+                NotificationCenter.default.post(name: .didReceivePhotoInfoUpdate, object: nil)
+            case .failure:
+                print(response.debugDescription)
+            }
+        }
+    }
+    
+    /**
+     Download images to display
+     */
+    public static func downloadImages(photos: Photos) {
+        AppData.images = []
+        for photo in photos.photo {
+            DispatchQueue.global(qos: .userInteractive).sync {
+                let url = imageBaseURL + "\(photo.server)/\(photo.id)_\(photo.secret)_m.jpg"
+                AF.request(url, method: .get).validate().responseData { (response) in
+                    switch response.result {
+                    case .success:
+                        AppData.images.append(UIImage(data: response.value!)!)
+                        NotificationCenter.default.post(name: .didReceivePhotoInfoUpdate, object: nil)
+                    case .failure:
+                        print(response.debugDescription)
+                    }
+                }
+            }
+        }
+    }
 }

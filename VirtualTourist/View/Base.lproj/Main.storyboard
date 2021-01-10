@@ -12,7 +12,6 @@
         <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="mapViewController" title="Map View Controller" id="BYZ-38-t0r" customClass="MapViewController" customModule="VirtualTourist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -36,6 +35,7 @@
                         <outlet property="mapView" destination="2ha-DA-buH" id="Pac-sW-1NW"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="999" y="113"/>
         </scene>
@@ -57,30 +57,51 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="4cw-T7-klN">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="4cw-T7-klN" customClass="ImageCollectionViewCell" customModule="VirtualTourist" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="E9q-na-PSd">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3cG-Ra-Np8">
+                                                    <rect key="frame" x="-56" y="-0.5" width="240" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
                                         </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="imageView" destination="3cG-Ra-Np8" id="Rn1-rl-wv4"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nig-lv-Fyu">
                                 <rect key="frame" x="0.0" y="44" width="414" height="243.5"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iol-F3-sOG">
+                                <rect key="frame" x="0.0" y="832" width="414" height="30"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <state key="normal" title="New Collection"/>
+                                <connections>
+                                    <action selector="newCollectionTapped:" destination="FGD-Sp-myH" eventType="touchUpInside" id="HR5-KD-jEg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9lc-L3-L3P"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="9lc-L3-L3P" firstAttribute="trailing" secondItem="z7L-rb-sxY" secondAttribute="trailing" id="2c2-zS-AcM"/>
                             <constraint firstItem="nig-lv-Fyu" firstAttribute="top" secondItem="9lc-L3-L3P" secondAttribute="top" id="4eI-XK-P9I"/>
+                            <constraint firstItem="9lc-L3-L3P" firstAttribute="bottom" secondItem="Iol-F3-sOG" secondAttribute="bottom" id="BUs-s7-icf"/>
                             <constraint firstItem="z7L-rb-sxY" firstAttribute="top" secondItem="nig-lv-Fyu" secondAttribute="bottom" id="F1w-ZP-f3H"/>
+                            <constraint firstItem="Iol-F3-sOG" firstAttribute="centerX" secondItem="9lc-L3-L3P" secondAttribute="centerX" id="FYl-2e-RcU"/>
                             <constraint firstItem="9lc-L3-L3P" firstAttribute="bottom" secondItem="z7L-rb-sxY" secondAttribute="bottom" id="ZJU-Nl-ibV"/>
                             <constraint firstItem="9lc-L3-L3P" firstAttribute="bottom" secondItem="nig-lv-Fyu" secondAttribute="bottom" multiplier="3" id="asa-nk-LRK"/>
                             <constraint firstItem="z7L-rb-sxY" firstAttribute="leading" secondItem="9lc-L3-L3P" secondAttribute="leading" id="k2M-GE-EGX"/>
                             <constraint firstItem="9lc-L3-L3P" firstAttribute="trailing" secondItem="nig-lv-Fyu" secondAttribute="trailing" id="lFf-Rm-ppK"/>
+                            <constraint firstItem="Iol-F3-sOG" firstAttribute="trailing" secondItem="z7L-rb-sxY" secondAttribute="trailing" id="osI-Z6-r6z"/>
+                            <constraint firstItem="Iol-F3-sOG" firstAttribute="leading" secondItem="z7L-rb-sxY" secondAttribute="leading" id="qjG-UN-327"/>
                             <constraint firstItem="nig-lv-Fyu" firstAttribute="leading" secondItem="9lc-L3-L3P" secondAttribute="leading" id="rBg-Yl-hth"/>
                         </constraints>
                     </view>
@@ -91,12 +112,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kbv-sE-mf7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1720" y="113"/>
+            <point key="canvasLocation" x="1848" y="113"/>
         </scene>
         <!--Initial Navigation Controller-->
         <scene sceneID="Bqb-Yo-kWb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cLI-d1-9Y7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController title="Initial Navigation Controller" id="ETb-0g-M3r" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tR6-u1-Vkl">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -106,6 +126,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="gba-UM-4WU"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cLI-d1-9Y7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="217" y="113"/>
         </scene>
@@ -113,6 +134,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

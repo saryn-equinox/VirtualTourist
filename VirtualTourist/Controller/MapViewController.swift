@@ -21,8 +21,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         // Create an instance of gesture recognizer
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(gestureRecognizer:)))
         tapGestureRecognizer.delegate = self
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         mapSetting()
-        VTClient.Auth.authorize()
+        VTClient.Auth.authorize() // Doesn't work
     }
     
     @objc func handleTap(gestureRecognizer: UITapGestureRecognizer) {
@@ -104,6 +105,7 @@ extension MapViewController: MKMapViewDelegate {
         let detailVC = self.storyboard?.instantiateViewController(identifier: "detailViewController") as! DetailViewController
         detailVC.visibleRegion = mapView.visibleMapRect
         detailVC.pin = view.annotation
+        VTClient.searchForPhotoes(lat: (view.annotation?.coordinate.latitude)! as Double, lon: (view.annotation?.coordinate.longitude)! as Double)
         self.navigationController?.show(detailVC, sender: self)
     }
 }
