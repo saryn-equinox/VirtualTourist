@@ -17,7 +17,7 @@
 		97F21FFD25A7D9E400BD3C58 /* CoordinateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F21FFC25A7D9E400BD3C58 /* CoordinateExtension.swift */; };
 		97F2200925A8FBD200BD3C58 /* VTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F2200825A8FBD200BD3C58 /* VTClient.swift */; };
 		97F2204625A939AD00BD3C58 /* OAuthSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 97F2204525A939AD00BD3C58 /* OAuthSwift */; };
-		97F2205725A970F000BD3C58 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97F2205525A970F000BD3C58 /* Model.xcdatamodeld */; };
+		97F2205725A970F000BD3C58 /* VirtualTourist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97F2205525A970F000BD3C58 /* VirtualTourist.xcdatamodeld */; };
 		97F2205B25A99DD400BD3C58 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 97F2205A25A99DD400BD3C58 /* Alamofire */; };
 		97F2206225A9A92400BD3C58 /* PhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F2206125A9A92400BD3C58 /* PhotoInfo.swift */; };
 		97F2206525AA089C00BD3C58 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F2206425AA089C00BD3C58 /* Photos.swift */; };
@@ -25,6 +25,7 @@
 		97F2206C25AA512200BD3C58 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F2206B25AA512100BD3C58 /* ImageCollectionViewCell.swift */; };
 		97F2206F25AA694C00BD3C58 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F2206E25AA694C00BD3C58 /* AppData.swift */; };
 		97F2207225AA75FA00BD3C58 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F2207125AA75FA00BD3C58 /* NotificationExtension.swift */; };
+		97F2207525AAD53500BD3C58 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F2207425AAD53500BD3C58 /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		97F2206B25AA512100BD3C58 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		97F2206E25AA694C00BD3C58 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		97F2207125AA75FA00BD3C58 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
+		97F2207425AAD53500BD3C58 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,8 +119,9 @@
 				97F2206025A9A91100BD3C58 /* Response */,
 				97F2200625A8FBB900BD3C58 /* Request */,
 				97F21FFF25A7D9F500BD3C58 /* Extension */,
-				97F2205525A970F000BD3C58 /* Model.xcdatamodeld */,
+				97F2205525A970F000BD3C58 /* VirtualTourist.xcdatamodeld */,
 				97F2206E25AA694C00BD3C58 /* AppData.swift */,
+				97F2207425AAD53500BD3C58 /* DataController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -236,8 +239,9 @@
 				97F2207225AA75FA00BD3C58 /* NotificationExtension.swift in Sources */,
 				97F21FD825A6E3A700BD3C58 /* AppDelegate.swift in Sources */,
 				97F2206825AA0AD500BD3C58 /* PhotoSearch.swift in Sources */,
+				97F2207525AAD53500BD3C58 /* DataController.swift in Sources */,
 				97F2206525AA089C00BD3C58 /* Photos.swift in Sources */,
-				97F2205725A970F000BD3C58 /* Model.xcdatamodeld in Sources */,
+				97F2205725A970F000BD3C58 /* VirtualTourist.xcdatamodeld in Sources */,
 				97F21FFD25A7D9E400BD3C58 /* CoordinateExtension.swift in Sources */,
 				97F21FDA25A6E3A700BD3C58 /* SceneDelegate.swift in Sources */,
 				97F21FF925A6F0FC00BD3C58 /* DetailViewController.swift in Sources */,
@@ -504,13 +508,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		97F2205525A970F000BD3C58 /* Model.xcdatamodeld */ = {
+		97F2205525A970F000BD3C58 /* VirtualTourist.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				97F2205625A970F000BD3C58 /* Model.xcdatamodel */,
 			);
 			currentVersion = 97F2205625A970F000BD3C58 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			path = VirtualTourist.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

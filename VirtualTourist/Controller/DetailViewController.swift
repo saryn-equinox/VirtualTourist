@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 class DetailViewController: UIViewController {
 
@@ -14,7 +15,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var imageCollection: UICollectionView!
         
     var visibleRegion: MKMapRect!
-    var pin: MKAnnotation!
+    var pinLoctaion: Location!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,9 @@ class DetailViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationItem.title = "Virtual Tourist"
         mapView.setVisibleMapRect(visibleRegion, animated: false)
-        mapView.centerCoordinate = pin.coordinate
+        mapView.centerCoordinate = CLLocationCoordinate2D(latitude: pinLoctaion.lat, longitude: pinLoctaion.lon)
+        let pin = MKPointAnnotation()
+        pin.coordinate = mapView.centerCoordinate
         mapView.addAnnotation(pin)
         mapView.delegate = self
         imageCollection.delegate = self
@@ -32,7 +35,7 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func newCollectionTapped(_ sender: Any) {
-        VTClient.searchForPhotoes(lat: pin.coordinate.latitude as Double, lon: pin.coordinate.longitude as Double)
+        VTClient.searchForPhotoes(lat: pinLoctaion.lat, lon: pinLoctaion.lon)
     }
     
     @objc func reloadPhotoInfo() {

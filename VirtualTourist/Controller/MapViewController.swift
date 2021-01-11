@@ -14,7 +14,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     var tapGestureRecognizer: UITapGestureRecognizer!
-    var annotaions: Array<CLLocationCoordinate2D> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,18 +30,12 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
         
         // Add annotation:
-        // Set doesn't work correctly
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = coordinate
-        if !annotaions.contains(coordinate) {
-            mapView.addAnnotation(annotation)
-            annotaions.append(coordinate)
-//            print("New pin added")
+        if getPinAt(lon: coordinate.longitude, lat: coordinate.latitude)?.count == 0 {
+            addPin(lat: coordinate.latitude, lon: coordinate.longitude)
+            print("New Pin added")
+        } else {
+            print("Pin already existed")
         }
-        
-        // Download images for associate with this location
-        // https://www.flickr.com/services/api/flickr.photos.geo.photosForLocation.html
-        
     }
     
     // Setting the map paramters
@@ -70,6 +63,53 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         
         mapView.setRegion(MKCoordinateRegion(center: centerLoc, span: MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)), animated: true)
+        
+        loadPins()
+    }
+    
+    /**
+     Load pins store in the coredata
+     */
+    func loadPins() {
+        let fetechRequest: NSFetchRequest<Location> = Location.fetchRequest()
+        do {
+            let results = try AppData.dataController.viewContext.fetch(fetechRequest)
+            for pin in results {
+                let newPin = MKPointAnnotation()
+                newPin.coordinate = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.lon)
+                mapView.addAnnotation(newPin)
+            }
+        } catch {
+            print("Fetch error: \(error)")
+        }
+    }
+    
+    /**
+     Add new pin to the coredata
+     */
+    func addPin(lat: Double, lon: Double) {
+        let pin = Location(context: AppData.dataController.viewContext)
+        pin.lat = lat
+        pin.lon = lon
+        try? AppData.dataController.viewContext.save()
+        let annotaion = MKPointAnnotation()
+        annotaion.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        mapView.addAnnotation(annotaion)
+    }
+    
+    func getPinAt(lon: Double, lat: Double) -> [Location]? {
+        let fetechRequest: NSFetchRequest<Location> = Location.fetchRequest()
+        let latPredicate = NSPredicate(format: "lat == %@", lat)
+        let lonPredicate = NSPredicate(format: "lon == %@", lon)
+        fetechRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [latPredicate, lonPredicate])
+        do {
+            let results = try AppData.dataController.viewContext.fetch(fetechRequest)
+            print(results.count)
+            return results
+        } catch {
+            print("Fetch error: \(error)")
+        }
+        return nil
     }
 }
 
@@ -104,8 +144,10 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let detailVC = self.storyboard?.instantiateViewController(identifier: "detailViewController") as! DetailViewController
         detailVC.visibleRegion = mapView.visibleMapRect
-        detailVC.pin = view.annotation
+        // get the pinLocation
+        let pin = getPinAt(lon: view.annotation!.coordinate.longitude, lat: view.annotation!.coordinate.latitude)
+        // download image in the background
         VTClient.searchForPhotoes(lat: (view.annotation?.coordinate.latitude)! as Double, lon: (view.annotation?.coordinate.longitude)! as Double)
-        self.navigationController?.show(detailVC, sender: self)
+//        self.navigationController?.show(detailVC, sender: self)
     }
 }
