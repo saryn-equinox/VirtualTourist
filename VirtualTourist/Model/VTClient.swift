@@ -51,11 +51,13 @@ class VTClient {
                          "lat": lat,
                          "lon": lon,
                          "format": "json",
-                         "nojsoncallback": 1]
+                         "nojsoncallback": 1,
+                         "page": Int(arc4random_uniform(UInt32(20))) % 20]
     
         AF.request(VTClient.baseURL, method: .get, parameters: paramters).validate().responseDecodable(of: PhotoSearch.self) { (response) in
             switch response.result {
             case .success:
+                print(Int64((response.value)?.photos.photo.count ?? 0))
                 pin.imagesCount = Int64((response.value)?.photos.photo.count ?? 0)
                 NotificationCenter.default.post(name: .didReceivePhotoInfoUpdate, object: nil)
                 downloadImages(pinBelongTo: pin, photos: response.value!.photos)

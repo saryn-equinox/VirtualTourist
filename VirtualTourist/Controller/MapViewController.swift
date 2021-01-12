@@ -26,16 +26,18 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @objc func handleTap(gestureRecognizer: UILongPressGestureRecognizer) {
-        let location = gestureRecognizer.location(in: mapView)
-        let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
-        
-        // Add annotation:
-        let pins = getPinAt(lon: coordinate.longitude, lat: coordinate.latitude)
-        
-        if (pins == nil) || (pins?.count == 0) {
-            addPin(lat: coordinate.latitude, lon: coordinate.longitude)
-        } else {
-            print("Pin already existed --- \(String(describing: pins?.count))")
+        if gestureRecognizer.state == .began {
+            let location = gestureRecognizer.location(in: mapView)
+            let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
+            
+            // Add annotation:
+            let pins = getPinAt(lon: coordinate.longitude, lat: coordinate.latitude)
+            
+            if (pins == nil) || (pins?.count == 0) {
+                addPin(lat: coordinate.latitude, lon: coordinate.longitude)
+            } else {
+                print("Pin already existed --- \(String(describing: pins?.count))")
+            }
         }
     }
     
@@ -175,6 +177,7 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print("Selected")
         let detailVC = self.storyboard?.instantiateViewController(identifier: "detailViewController") as! DetailViewController
         detailVC.visibleRegion = mapView.visibleMapRect
         // get the pinLocation
