@@ -35,7 +35,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         if (pins == nil) || (pins?.count == 0) {
             addPin(lat: coordinate.latitude, lon: coordinate.longitude)
         } else {
-            print("Pin already existed --- \(pins?.count)")
+            print("Pin already existed --- \(String(describing: pins?.count))")
         }
     }
     
@@ -52,7 +52,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         
         if UserDefaults.standard.bool(forKey: "centerLoc") {
             centerLoc = CLLocationCoordinate2D(dict: UserDefaults.standard.value(forKey: "centerLoc") as! CLLocationCoordinate2D.CLLocationDictionary)
-            mapView.region.center = centerLoc
         }
         
         if UserDefaults.standard.bool(forKey: "longitudeDelta") {
@@ -64,6 +63,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         
         mapView.setRegion(MKCoordinateRegion(center: centerLoc, span: MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)), animated: true)
+        mapView.centerCoordinate = centerLoc
         
         loadPins()
     }
@@ -76,8 +76,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         do {
             let results = try AppData.dataController.viewContext.fetch(fetechRequest)
             for pin in results {
-                print(pin.lat)
-                print(pin.lon)
                 let newPin = MKPointAnnotation()
                 newPin.coordinate = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.lon)
                 mapView.addAnnotation(newPin)
@@ -105,8 +103,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
      */
     func getPinAt(lon: Double, lat: Double) -> [Location]? {
         let fetechRequest: NSFetchRequest<Location> = Location.fetchRequest()
-        let latPredicate = NSPredicate(format: "lat == %lf", lat)
-        let lonPredicate = NSPredicate(format: "lon == %lf", lon)
+        let latPredicate = NSPredicate(format: "abs:(lat - %lf) < 0.000001", lat)
+        let lonPredicate = NSPredicate(format: "abs:(lon - %lf) < 0.000001", lon)
         fetechRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [latPredicate, lonPredicate])
         do {
             let results = try AppData.dataController.viewContext.fetch(fetechRequest)
@@ -117,10 +115,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         return nil
     }
     
-    
     func deleteImages(pin: Location) {
         let fetechRequest: NSFetchRequest<NSFetchRequestResult> = Image.fetchRequest()
-        let predicate = NSPredicate(format: "Location == %@", pin)
+        let predicate = NSPredicate(format: "locBelonging == %@", pin)
         fetechRequest.predicate = predicate
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetechRequest)
         do {
@@ -140,14 +137,14 @@ extension MapViewController: MKMapViewDelegate {
         UserDefaults.standard.setValue(mapView.region.span.longitudeDelta, forKey: "longitudeDelta")
     }
     
+    /**
+     getPinAt cannot fetch the Location from the database even though the lon and lat are exactly same, I don't know how to solve this issue
+     */
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationView.DragState, fromOldState oldState: MKAnnotationView.DragState) {
         var pinToUpdate: [Location]?
         if oldState == MKAnnotationView.DragState.starting {
             let oldLat = view.annotation!.coordinate.latitude
             let oldLon = view.annotation!.coordinate.longitude
-            print("-------")
-            print(oldLat)
-            print(oldLon)
             pinToUpdate = getPinAt(lon: oldLon, lat: oldLat)
         }
         if newState == MKAnnotationView.DragState.ending {
@@ -170,7 +167,7 @@ extension MapViewController: MKMapViewDelegate {
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView?.isDraggable = true
+            pinView?.isDraggable = false
         } else {
             pinView?.annotation = annotation
         }
@@ -182,9 +179,16 @@ extension MapViewController: MKMapViewDelegate {
         detailVC.visibleRegion = mapView.visibleMapRect
         // get the pinLocation
         let pin = getPinAt(lon: view.annotation!.coordinate.longitude, lat: view.annotation!.coordinate.latitude)
-//        detailVC.pinLoctaion = pin![0]
-        // download image in the background
-//        VTClient.searchForPhotoes(lat: (view.annotation?.coordinate.latitude)! as Double, lon: (view.annotation?.coordinate.longitude)! as Double)
-//        self.navigationController?.show(detailVC, sender: self)
+        detailVC.pinLoctaion = pin![0]
+        
+        let fetechRequest: NSFetchRequest<Image> = Image.fetchRequest()
+        let predicate = NSPredicate(format: "locBelonging == %@", detailVC.pinLoctaion)
+        fetechRequest.predicate = predicate
+        let images = try! AppData.dataController.viewContext.fetch(fetechRequest)
+        if images.count == 0 {
+            VTClient.searchForPhotoes(pin: detailVC.pinLoctaion)
+            detailVC.newCollectionButtonEnabled = false
+        }
+        self.navigationController?.show(detailVC, sender: self)
     }
 }

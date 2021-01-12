@@ -10,5 +10,5 @@ import UIKit
 class ImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     
-    var photoInfo: PhotoInfo?
+    var image: Image!
 }

@@ -10,4 +10,5 @@ import UIKit
 
 extension Notification.Name {
     static let didReceivePhotoInfoUpdate = Notification.Name("didReceivePhotoInfo")
+    static let didFinishedDownload = Notification.Name("didFinishedDownload")
 }

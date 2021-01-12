@@ -12,5 +12,5 @@ struct Photos: Codable {
     let pages: Int
     let perpage: Int
     let total: String
-    let photo: [PhotoInfo]
+    var photo: [PhotoInfo]
 }

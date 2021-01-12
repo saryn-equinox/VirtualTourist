@@ -43,7 +43,9 @@ class VTClient {
     /**
      Search photos assoicate with specific locaton
      */
-    public static func searchForPhotoes(lat: Double, lon: Double) {
+    public static func searchForPhotoes(pin: Location) {
+        let lat = pin.lat
+        let lon = pin.lon
         let paramters: [String: Any] = ["method": "flickr.photos.search",
                          "api_key": Auth.apiKey,
                          "lat": lat,
@@ -54,9 +56,9 @@ class VTClient {
         AF.request(VTClient.baseURL, method: .get, parameters: paramters).validate().responseDecodable(of: PhotoSearch.self) { (response) in
             switch response.result {
             case .success:
-                AppData.photos = response.value
-                downloadImages(photos: AppData.photos!.photos)
+                pin.imagesCount = Int64((response.value)?.photos.photo.count ?? 0)
                 NotificationCenter.default.post(name: .didReceivePhotoInfoUpdate, object: nil)
+                downloadImages(pinBelongTo: pin, photos: response.value!.photos)
             case .failure:
                 print(response.debugDescription)
             }
@@ -66,7 +68,7 @@ class VTClient {
     /**
      Download images to display
      */
-    public static func downloadImages(photos: Photos) {
+    public static func downloadImages(pinBelongTo: Location, photos: Photos) {
         AppData.images = []
         for photo in photos.photo {
             DispatchQueue.global(qos: .userInteractive).sync {
@@ -74,7 +76,11 @@ class VTClient {
                 AF.request(url, method: .get).validate().responseData { (response) in
                     switch response.result {
                     case .success:
-                        AppData.images.append(UIImage(data: response.value!)!)
+                        let image = Image(context: AppData.dataController.viewContext)
+                        image.locBelonging = pinBelongTo
+                        image.image = response.value
+                        image.photoId = photo.id
+                        try? AppData.dataController.viewContext.save()
                         NotificationCenter.default.post(name: .didReceivePhotoInfoUpdate, object: nil)
                     case .failure:
                         print(response.debugDescription)
@@ -82,5 +88,6 @@ class VTClient {
                 }
             }
         }
+        NotificationCenter.default.post(name: .didFinishedDownload, object: nil)
     }
 }

@@ -27,6 +27,8 @@ class DataController {
             self.autoSaveViewContext()
             completion?()
         }
+        
+        viewContext.mergePolicy = NSMergePolicy(merge: .overwriteMergePolicyType)
     }
     
     func autoSaveViewContext(interval: TimeInterval = 30) {

@@ -108,6 +108,7 @@
                     <connections>
                         <outlet property="imageCollection" destination="z7L-rb-sxY" id="edS-Vg-Irz"/>
                         <outlet property="mapView" destination="nig-lv-Fyu" id="bXb-la-urH"/>
+                        <outlet property="newCollection" destination="Iol-F3-sOG" id="u62-hF-VCT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kbv-sE-mf7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
